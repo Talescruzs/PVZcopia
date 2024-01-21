@@ -5,34 +5,10 @@
 #include <allegro5/allegro_primitives.h>
 #include <stdio.h>
 
-#include "defs.h"
-// #include "jogo.h"
-#include "mecanicas.c"
-// void addPlanta(int posX, int posY, Planta planta, Posicao posicao[5][11]){
-//     printf("%d", posX);
-//     printf("%d", posY);
-// }
+#include "plantas.h"
+#include "jogo.h"
 
-int main (){
-    al_init();
-    al_init_font_addon();
-    al_init_ttf_addon();
-    al_init_image_addon();
-    al_install_mouse();
-
-    ALLEGRO_DISPLAY * display = al_create_display(1200, 900);
-    al_set_window_position(display, 100, 100);
-    al_set_window_title(display, "PVZ");
-
-    ALLEGRO_FONT* font = al_load_font("./font.ttf", 30, 0);;
-
-    ALLEGRO_EVENT_QUEUE * event_queue = al_create_event_queue();
-    al_register_event_source(event_queue, al_get_display_event_source(display));
-    al_register_event_source(event_queue, al_get_mouse_event_source() );
-    ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
-    al_register_event_source(event_queue, al_get_timer_event_source(timer));
-    al_start_timer(timer);
-
+void jogo(ALLEGRO_DISPLAY * display, ALLEGRO_FONT* font, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_TIMER* timer){
     int continua=1;
     ALLEGRO_BITMAP * planta1 = al_load_bitmap("./img/planta1.png");
     ALLEGRO_BITMAP * planta2 = al_load_bitmap("./img/planta2.png");
@@ -41,17 +17,6 @@ int main (){
     ALLEGRO_BITMAP * tiro = al_load_bitmap("./img/tiroErvilha.png");
     ALLEGRO_BITMAP * bg = al_load_bitmap("./img/testebg.png");
     ALLEGRO_EVENT event;
-
-    Posicao matriz[5][11];
-    for(int i=0; i<5; i++){
-        for(int j=0; j<11; j++){
-            matriz[i][j].posX = 0+(100*j);
-            matriz[i][j].posY = 200+(100*i);
-            matriz[i][j].tamX = 108;
-            matriz[i][j].tamY = 108;
-            matriz[i][j].planta = VAZIO;
-        }
-    }
 
     while(continua==1){
         al_wait_for_event(event_queue, &event);
@@ -70,10 +35,6 @@ int main (){
         if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ){
             continua = -1;
         }
-        else if(event.type==ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){ 
-            addPlanta(event.mouse.x, event.mouse.y, ERVILHA, matriz);
-        }
-
         al_flip_display();
     }
 
@@ -81,11 +42,4 @@ int main (){
     al_destroy_bitmap(planta2);
     al_destroy_bitmap(ervilha);
     al_destroy_bitmap(zumbi);
-
-
-    al_destroy_font(font);
-    al_destroy_display(display);
-    al_destroy_event_queue(event_queue);
-
-  return 0;
 }
