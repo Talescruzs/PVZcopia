@@ -8,10 +8,6 @@
 #include "defs.h"
 // #include "jogo.h"
 #include "mecanicas.c"
-// void addPlanta(int posX, int posY, Planta planta, Posicao posicao[5][11]){
-//     printf("%d", posX);
-//     printf("%d", posY);
-// }
 
 int main (){
     al_init();
@@ -45,10 +41,10 @@ int main (){
     Posicao matriz[5][11];
     for(int i=0; i<5; i++){
         for(int j=0; j<11; j++){
-            matriz[i][j].posX = 0+(100*j);
-            matriz[i][j].posY = 200+(100*i);
-            matriz[i][j].tamX = 108;
-            matriz[i][j].tamY = 108;
+            matriz[i][j].posX = incioXadrezX+(tamXadrezX*j);
+            matriz[i][j].posY = incioXadrezY+(tamXadrezY*i);
+            matriz[i][j].tamX = tamXadrezX;
+            matriz[i][j].tamY = tamXadrezY;
             matriz[i][j].planta = VAZIO;
         }
     }

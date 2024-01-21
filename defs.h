@@ -16,6 +16,10 @@ typedef struct Posicao{
     Planta planta;
 } Posicao;
 
+//GLOBAIS
+int tamXadrezX=108, tamXadrezY=108;
+int incioXadrezX=120, incioXadrezY=265;
+
 //PLANTAS
 Planta ERVILHA = {10, 100, 220, 0, 0, 96, 96, 10, 5.5, "./img/ervilha.png"};
 Planta VAZIO = {0, 0, 0, 0, 0, 96, 96, 1, 0, "./img/vazio.png"};
