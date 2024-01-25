@@ -3,6 +3,6 @@
 
 #include "defs.h"
 
-void addPlanta(int posX, int posY, Planta planta, Posicao posicao[5][11]);
+void addPlanta(int posX, int posY, Opcoes *opcSelecionada, Posicao posicao[5][11]);
 
 #endif
