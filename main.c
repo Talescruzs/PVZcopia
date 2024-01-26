@@ -35,6 +35,8 @@ int main (){
     ALLEGRO_BITMAP * vazioBit = al_load_bitmap("./img/vazio.png");
     ALLEGRO_BITMAP * zumbi = al_load_bitmap("./img/zumbi1.png");
     ALLEGRO_BITMAP * tiro = al_load_bitmap("./img/tiroErvilha.png");
+    ALLEGRO_BITMAP * sol = al_load_bitmap("./img/sol.png");
+    ALLEGRO_BITMAP * carro = al_load_bitmap("./img/carro2.png");
     ALLEGRO_BITMAP * bg = al_load_bitmap("./img/testebg.png");
 
     //PLANTAS
@@ -78,12 +80,11 @@ int main (){
         
         for(int i=0; i<5; i++){
             for(int j=0; j<11; j++){
-                // if(matriz[i][j].planta.id == ERVILHA.id){
-                    al_draw_bitmap_region(matriz[i][j].planta.bitmap, matriz[i][j].planta.tamX*((int)(al_get_timer_count(timer)/10)%4), matriz[i][j].planta.tamY*0, matriz[i][j].planta.tamX, matriz[i][j].planta.tamY, incioXadrezX+(tamXadrezX*j), incioXadrezY+(tamXadrezY*i), 0);
-                // }
+                al_draw_bitmap_region(matriz[i][j].planta.bitmap, matriz[i][j].planta.tamX*((int)(al_get_timer_count(timer)/10)%4), matriz[i][j].planta.tamY*0, matriz[i][j].planta.tamX, matriz[i][j].planta.tamY, incioXadrezX+(tamXadrezX*j), incioXadrezY+(tamXadrezY*i), 0);
             }
             al_draw_bitmap_region(zumbi, 128*((int)(al_get_timer_count(timer)/10)%4), 128*0, 128, 128, 1200-2*((int)(al_get_timer_count(timer)%700)), 220+(110*i), 0);
             al_draw_bitmap(tiro, 270+10*((int)(al_get_timer_count(timer)%90)), 230+(120*i), 0);
+            al_draw_bitmap(carro, 10, incioXadrezY+(tamXadrezY*i), 0);
         }
 
         if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ){
@@ -99,12 +100,11 @@ int main (){
                 addPlanta(event.mouse.x, event.mouse.y, &opcSelecionada, matriz);
             }
         }
+        al_draw_bitmap(sol, 100, 100, 0);
 
         al_flip_display();
     }
 
-    // al_destroy_bitmap(planta1);
-    // al_destroy_bitmap(planta2);
     al_destroy_bitmap(ervilhaBit);
     al_destroy_bitmap(vazioBit);
     al_destroy_bitmap(zumbi);
